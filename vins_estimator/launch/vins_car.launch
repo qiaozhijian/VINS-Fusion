@@ -9,7 +9,7 @@
     <node name="loop_fusion" pkg="loop_fusion" type="loop_fusion_node" output="screen"
           args=" $(find vins)/../config/vi_car/vi_car.yaml"/>
 
-    <arg name="bag" default=" /media/qzj/Dataset/slamDataSet/code_with_dataset/vins_fusion_bag/car.bag"/>
+    <arg name="bag" default=" /media/qzj/Extreme\ SSD/datasets/code_with_dataset/vins_fusion_bag/car.bag"/>
     <!--<arg name="bag" default=" /media/qzj/Dataset/slamDataSet/sweepRobot/round3/10/10.bag"/>-->
 
     <!--    output="screen"-->
