@@ -31,10 +31,6 @@ using namespace std;
 using namespace DVision;
 
 
-#if (CV_VERSION_MAJOR >= 4)
-#define CV_FONT_HERSHEY_SIMPLEX             cv::FONT_HERSHEY_SIMPLEX
-#endif
-
 class BriefExtractor
 {
 public:

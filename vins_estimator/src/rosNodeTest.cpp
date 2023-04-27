@@ -32,20 +32,16 @@ std::mutex m_buf;
 
 void img0_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
-    std::cout << "img0_callback" << std::endl;
     m_buf.lock();
     img0_buf.push(img_msg);
     m_buf.unlock();
-    std::cout << "img0_callback end" << std::endl;
 }
 
 void img1_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
-    std::cout << "img1_callback" << std::endl;
     m_buf.lock();
     img1_buf.push(img_msg);
     m_buf.unlock();
-    std::cout << "img1_callback end" << std::endl;
 }
 
 

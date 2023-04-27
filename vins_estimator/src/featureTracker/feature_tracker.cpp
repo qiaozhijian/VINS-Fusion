@@ -453,12 +453,7 @@ void FeatureTracker::drawTrack(const cv::Mat &imLeft, const cv::Mat &imRight,
         cv::hconcat(imLeft, imRight, imTrack);
     else
         imTrack = imLeft.clone();
-
-#if (CV_VERSION_MAJOR >= 4)
-    cv::cvtColor(imTrack, imTrack, cv::COLOR_GRAY2RGB);
-#else
     cv::cvtColor(imTrack, imTrack, CV_GRAY2RGB);
-#endif
 
     for (size_t j = 0; j < curLeftPts.size(); j++)
     {

@@ -8,12 +8,6 @@
 namespace camodocal
 {
 
-#if (CV_VERSION_MAJOR >= 4)
-#define CV_BGR2RGB  cv::COLOR_BGR2RGB
-#define CV_GRAY2RGB cv::COLOR_GRAY2RGB
-#define CV_AA       cv::LINE_AA
-#endif
-
 class CameraCalibration
 {
 public:

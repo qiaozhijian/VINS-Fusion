@@ -33,28 +33,6 @@
 #include <vector>
 #include <boost/dynamic_bitset.hpp>
 
-#if (CV_VERSION_MAJOR >= 4)
-#define CV_BGR2RGB                          cv::COLOR_BGR2RGB
-#define CV_RGB2GRAY                         cv::COLOR_RGB2GRAY
-#define CV_GRAY2RGB                         cv::COLOR_GRAY2RGB
-#define CV_GRAY2BGR                         cv::COLOR_GRAY2BGR
-#define CV_BGR2GRAY                         cv::COLOR_BGR2GRAY
-#define CV_AA                               cv::LINE_AA
-#define CV_CALIB_CB_ADAPTIVE_THRESH         cv::CALIB_CB_ADAPTIVE_THRESH
-#define CV_CALIB_CB_NORMALIZE_IMAGE         cv::CALIB_CB_NORMALIZE_IMAGE
-#define CV_CALIB_CB_FILTER_QUADS            cv::CALIB_CB_FILTER_QUADS
-#define CV_CALIB_CB_FAST_CHECK              cv::CALIB_CB_FAST_CHECK
-#define CV_ADAPTIVE_THRESH_MEAN_C           cv::ADAPTIVE_THRESH_MEAN_C
-#define CV_THRESH_BINARY                    cv::THRESH_BINARY
-#define CV_SHAPE_CROSS                      cv::MORPH_CROSS
-#define CV_SHAPE_RECT                       cv::MORPH_RECT
-#define CV_TERMCRIT_EPS                     cv::TermCriteria::EPS
-#define CV_RETR_CCOMP                       cv::RETR_CCOMP
-#define CV_CHAIN_APPROX_SIMPLE              cv::CHAIN_APPROX_SIMPLE
-#define CV_THRESH_BINARY_INV                cv::CHAIN_APPROX_SIMPLE
-#define CV_TERMCRIT_ITER                    cv::TermCriteria::MAX_ITER
-#endif
-
 namespace DVision {
 
 /// BRIEF descriptor
