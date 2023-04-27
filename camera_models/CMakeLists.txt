@@ -49,7 +49,7 @@ include_directories(
 include_directories("include")
 
 add_executable(Calibrations 
-    src/intrinsic_calib.cc"
+    src/intrinsic_calib.cc
     src/chessboard/Chessboard.cc
     src/calib/CameraCalibration.cc
     src/camera_models/Camera.cc
