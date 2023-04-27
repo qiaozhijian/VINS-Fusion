@@ -25,47 +25,49 @@ Estimator estimator;
 
 queue<sensor_msgs::ImuConstPtr> imu_buf;
 queue<sensor_msgs::PointCloudConstPtr> feature_buf;
-queue<sensor_msgs::CompressedImageConstPtr > img0_buf;
-queue<sensor_msgs::CompressedImageConstPtr> img1_buf;
+queue<sensor_msgs::ImageConstPtr> img0_buf;
+queue<sensor_msgs::ImageConstPtr> img1_buf;
 std::mutex m_buf;
 
 
-void img0_callback(const sensor_msgs::CompressedImageConstPtr &img_msg)
+void img0_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
+    std::cout << "img0_callback" << std::endl;
     m_buf.lock();
     img0_buf.push(img_msg);
     m_buf.unlock();
+    std::cout << "img0_callback end" << std::endl;
 }
 
-void img1_callback(const sensor_msgs::CompressedImageConstPtr &img_msg)
+void img1_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
+    std::cout << "img1_callback" << std::endl;
     m_buf.lock();
     img1_buf.push(img_msg);
     m_buf.unlock();
+    std::cout << "img1_callback end" << std::endl;
 }
 
 
-cv::Mat getImageFromMsg(const sensor_msgs::CompressedImageConstPtr &img_msg)
+cv::Mat getImageFromMsg(const sensor_msgs::ImageConstPtr &img_msg)
 {
     cv_bridge::CvImageConstPtr ptr;
-    cv_bridge::CvImagePtr cv_ptr_compressed = cv_bridge::toCvCopy(img_msg,sensor_msgs::image_encodings::MONO8);
-    cv::Mat img = cv_ptr_compressed->image.clone();
-//    if (img_msg->encoding == "8UC1")
-//    {
-//        sensor_msgs::Image img;
-//        img.header = img_msg->header;
-//        img.height = img_msg->height;
-//        img.width = img_msg->width;
-//        img.is_bigendian = img_msg->is_bigendian;
-//        img.step = img_msg->step;
-//        img.data = img_msg->data;
-//        img.encoding = "mono8";
-//        ptr = cv_bridge::toCvCopy(img, sensor_msgs::image_encodings::MONO8);
-//    }
-//    else
-//        ptr = cv_bridge::toCvCopy(img_msg, sensor_msgs::image_encodings::MONO8);
+    if (img_msg->encoding == "8UC1")
+    {
+        sensor_msgs::Image img;
+        img.header = img_msg->header;
+        img.height = img_msg->height;
+        img.width = img_msg->width;
+        img.is_bigendian = img_msg->is_bigendian;
+        img.step = img_msg->step;
+        img.data = img_msg->data;
+        img.encoding = "mono8";
+        ptr = cv_bridge::toCvCopy(img, sensor_msgs::image_encodings::MONO8);
+    }
+    else
+        ptr = cv_bridge::toCvCopy(img_msg, sensor_msgs::image_encodings::MONO8);
 
-//    cv::Mat img = ptr->image.clone();
+    cv::Mat img = ptr->image.clone();
     return img;
 }
 

@@ -6,14 +6,14 @@
     <node name="vins_estimator" pkg="vins" type="vins_node" output="screen"
           args=" $(find vins)/../config/realsense_l515/realsense_stereo_imu_config.yaml"/>
 
-<!--    <node name="loop_fusion" pkg="loop_fusion" type="loop_fusion_node" output="screen"-->
-<!--          args=" $(find vins)/../config/realsense_l515/realsense_stereo_imu_config.yaml"/>-->
+    <node name="loop_fusion" pkg="loop_fusion" type="loop_fusion_node" output="screen"
+          args=" $(find vins)/../config/realsense_l515/realsense_stereo_imu_config.yaml"/>
 
 <!--    <arg name="bag" default=" /media/qzj/Extreme\ SSD/project_2022-11-10-00-42-01.bag"/>-->
     <arg name="bag" default=" /media/qzj/Extreme\ SSD/trainning_data/project_2022-11-12-23-13-10.bag"/>
 
     <!--    output="screen"-->
-    <node pkg="rosbag" type="play" output="log" name="rosbag" args="--clock $(arg bag) -r 1 -s 0"/>
+    <node pkg="rosbag" type="play" output="log" name="rosbag" args=" --clock $(arg bag) -r 1 -s 0"/>
 
     <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log"
           args="-d $(find vins)/../config/vins_rviz_config.rviz"/>

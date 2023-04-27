@@ -108,7 +108,7 @@ map<int, vector<pair<int, Eigen::Matrix<double, 7, 1>>>> FeatureTracker::trackIm
     }
     */
     cur_pts.clear();
-
+    //LK光流会生成prev_pts的跟踪结果cur_pts以及跟踪状态status
     if (prev_pts.size() > 0)
     {
         TicToc t_o;

@@ -163,6 +163,7 @@ void Estimator::inputImage(double t, const cv::Mat &_img, const cv::Mat &_img1)
     map<int, vector<pair<int, Eigen::Matrix<double, 7, 1>>>> featureFrame;
     TicToc featureTrackerTime;
 
+    // featureFrame是当前帧跟踪的结果，包括特征点的全局id以及其在当前帧的属性
     if(_img1.empty())
         featureFrame = featureTracker.trackImage(t, _img);
     else
@@ -180,6 +181,7 @@ void Estimator::inputImage(double t, const cv::Mat &_img, const cv::Mat &_img1)
         if(inputImageCnt % 2 == 0)
         {
             mBuf.lock();
+            //featureBuf是一个队列，存储的是每一帧的跟踪结果
             featureBuf.push(make_pair(t, featureFrame));
             mBuf.unlock();
         }
@@ -359,7 +361,6 @@ void Estimator::initFirstIMUPose(vector<pair<double, Eigen::Vector3d>> &accVecto
     double yaw = Utility::R2ypr(R0).x();
     R0 = Utility::ypr2R(Eigen::Vector3d{-yaw, 0, 0}) * R0;
     Rs[0] = R0;
-    cout << "init R0 " << endl << Rs[0] << endl;
     //Vs[0] = Vector3d(5, 0, 0);
 }
 
@@ -775,6 +776,7 @@ bool Estimator::visualInitialAlign()
         Rs[i] = rot_diff * Rs[i];
         Vs[i] = rot_diff * Vs[i];
     }
+    cout << "init rot_diff " << endl << rot_diff << endl;
     ROS_DEBUG_STREAM("g0     " << g.transpose());
     ROS_DEBUG_STREAM("my R0  " << Utility::R2ypr(Rs[0]).transpose()); 
 

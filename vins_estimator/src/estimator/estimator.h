@@ -135,7 +135,7 @@ class Estimator
     int sum_of_outlier, sum_of_back, sum_of_front, sum_of_invalid;
     int inputImageCnt;
 
-    FeatureManager f_manager;
+    FeatureManager f_manager; //包含FeaturePerId包含FeaturePerFrame
     MotionEstimator m_estimator;
     InitialEXRotation initial_ex_rotation;
 
