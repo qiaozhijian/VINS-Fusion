@@ -170,8 +170,12 @@ void pubOdometry(const Estimator &estimator, const std_msgs::Header &header)
               << estimator.Vs[WINDOW_SIZE].z() << "," << endl;
         foutC.close();
         Eigen::Vector3d tmp_T = estimator.Ps[WINDOW_SIZE];
-        printf("time: %f, t: %f %f %f q: %f %f %f %f \n", header.stamp.toSec(), tmp_T.x(), tmp_T.y(), tmp_T.z(),
-                                                          tmp_Q.w(), tmp_Q.x(), tmp_Q.y(), tmp_Q.z());
+        //printf("time: %f, t: %f %f %f q: %f %f %f %f \n", header.stamp.toSec(), tmp_T.x(), tmp_T.y(), tmp_T.z(),
+        //                                                  tmp_Q.w(), tmp_Q.x(), tmp_Q.y(), tmp_Q.z());
+
+        std::cout << "state: " << "p: " << std::fixed << std::setprecision(3) << estimator.Ps[WINDOW_SIZE].transpose() << " v: " << estimator.Vs[WINDOW_SIZE].transpose()
+                  << " q: " << Eigen::Quaterniond(estimator.Rs[WINDOW_SIZE]).coeffs().transpose() << " ypr: " << Utility::R2ypr(estimator.Rs[WINDOW_SIZE]).transpose()
+                  << " bg: " << estimator.Bgs[WINDOW_SIZE].transpose() << " ba: " << estimator.Bas[WINDOW_SIZE].transpose() << std::endl;
     }
 }
 

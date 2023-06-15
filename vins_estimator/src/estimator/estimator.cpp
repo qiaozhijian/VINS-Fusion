@@ -472,6 +472,7 @@ void Estimator::processImage(const map<int, vector<pair<int, Eigen::Matrix<doubl
                     updateLatestStates();
                     solver_flag = NON_LINEAR;
                     slideWindow();
+                    printAllStates();
                     ROS_INFO("Initialization finish!");
                 }
                 else
@@ -1611,4 +1612,19 @@ void Estimator::updateLatestStates()
         tmp_gyrBuf.pop();
     }
     mPropagate.unlock();
+}
+
+void Estimator::printAllStates(){
+    for (int i = 0; i < WINDOW_SIZE + 1; ++i) {
+
+        //Vector3d        Ps[(WINDOW_SIZE + 1)];
+        //Vector3d        Vs[(WINDOW_SIZE + 1)];
+        //Matrix3d        Rs[(WINDOW_SIZE + 1)];
+        //Vector3d        Bas[(WINDOW_SIZE + 1)];
+        //Vector3d        Bgs[(WINDOW_SIZE + 1)];
+
+        std::cout << i << "th state: " << "p: " << std::fixed << std::setprecision(3) << Ps[i].transpose() << " v: " << Vs[i].transpose()
+        << " q: " << Eigen::Quaterniond(Rs[i]).coeffs().transpose() << " ypr: " << Utility::R2ypr(Rs[i]).transpose()
+        << " ba: " << Bas[i].transpose() << " bg: " << Bgs[i].transpose() << std::endl;
+    }
 }

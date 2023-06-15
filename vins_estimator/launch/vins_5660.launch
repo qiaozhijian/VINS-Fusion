@@ -1,0 +1,21 @@
+<launch>
+
+    <!--- Sim Time -->
+    <param name="/use_sim_time" value="true"/>
+
+    <node name="vins_estimator" pkg="vins" type="vins_node" output="screen"
+          args=" $(find vins)/../config/A3_5660/params.yaml"/>
+
+<!--    <node name="loop_fusion" pkg="loop_fusion" type="loop_fusion_node" output="screen"-->
+<!--          args=" $(find vins)/../config/A3_5660/vi_car.yaml"/>-->
+
+    <arg name="bag" default=" /home/qzj/code/catkin_roadslam/src/VINS-Fusion/support_files/bag/bag_aug_ekf.bag"/>
+
+    <!--    output="screen"-->
+    <node pkg="rosbag" type="play" output="log" name="rosbag" args=" --clock $(arg bag) -r 1 -s 0"/>
+
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log"
+          args="-d $(find vins)/../config/vins_rviz_config.rviz"/>
+    <!--    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log"  />-->
+
+</launch>
